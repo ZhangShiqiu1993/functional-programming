@@ -11,4 +11,14 @@
         (else
          (compose f (repeat f (- n 1)) ))))
 
-((repeat square 2) 5)
+(define (repeated f n)
+  (define (could-double? x)
+    (<= (* x 2) n))
+  (define (iter k g)
+    (cond ((= k n) g)
+          ((could-double? k)(iter (* k 2) (double g)))
+          (else
+           (compose f (iter (- k 1) g)))))
+  (iter 1 f))
+
+((repeated square 2) 5)
