@@ -14,11 +14,13 @@
 (define (repeated f n)
   (define (could-double? x)
     (<= (* x 2) n))
-  (define (iter k g)
-    (cond ((= k n) g)
-          ((could-double? k)(iter (* k 2) (double g)))
+  (define (iter k result)
+    (cond ((= k n) result)
+          ((could-double? k)
+           (iter (* k 2) (f (f result))))
           (else
-           (compose f (iter (- k 1) g)))))
-  (iter 1 f))
+           (iter (+ k 1) (f result)))))
+  (lambda (x) (iter 1 x)))
 
+((repeat square 2) 5)
 ((repeated square 2) 5)
