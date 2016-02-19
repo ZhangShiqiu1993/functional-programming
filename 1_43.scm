@@ -12,15 +12,12 @@
          (compose f (repeat f (- n 1)) ))))
 
 (define (repeated f n)
-  (define (could-double? x)
-    (<= (* x 2) n))
+  (define (big-enough? x) (>= (/ x 2) n))
   (define (iter k result)
-    (cond ((= k n) result)
-          ((could-double? k)
-           (iter (* k 2) (f (f result))))
-          (else
-           (iter (+ k 1) (f result)))))
-  (lambda (x) (iter 1 x)))
+    (cond ((= k 0) result)
+          ((big-enough? k) (iter (/ k 2) (f (f result))))
+          (else (iter (- k 1) (f result)))))
+  (lambda (x) (iter n x)))
 
 ((repeat square 2) 5)
 ((repeated square 2) 5)
