@@ -32,4 +32,4 @@
 (define b (make-point 2 2))
 (define ab (make-segment a b))
 (define c (midpoint-segment ab))
-c
+(print-point c)
