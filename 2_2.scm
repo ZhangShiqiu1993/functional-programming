@@ -1,0 +1,35 @@
+#lang planet neil/sicp
+(define (print-point p)
+  (newline)
+  (display "(")
+  (display (x-point p))
+  (display ".")
+  (display (y-point p))
+  (display ")"))
+
+(define (make-segment start-point end-point)
+  (cons start-point end-point))
+(define (start-segment segment)
+  (car segment))
+(define (end-segment segment)
+  (cdr segment))
+
+(define (make-point x y) (cons x y))
+(define (x-point p) (car p))
+(define (y-point p) (cdr p))
+
+(define (midpoint-segment segment)
+  (define (average a b) (/ (+ a b) 2))
+  (let ((start (start-segment segment))
+        (end (end-segment segment)))
+    (define x (average (x-point start)
+                       (x-point end)))
+    (define y (average (y-point start)
+                       (y-point end)))
+    (make-point x y)))
+
+(define a (make-point 0 0))
+(define b (make-point 2 2))
+(define ab (make-segment a b))
+(define c (midpoint-segment ab))
+c
