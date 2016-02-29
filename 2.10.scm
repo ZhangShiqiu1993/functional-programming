@@ -4,7 +4,7 @@
 (define upper-bound cdr)
 
 (define (cross-zero? x)
-  (<= (* (lower-bound x) (lower-bound x)) 0))
+  (<= (* (lower-bound x) (upper-bound x)) 0))
 
 (define (add-interval x y)
   (make-interval (+ (lower-bound x) (lower-bound y))
