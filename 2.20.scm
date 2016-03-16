@@ -10,5 +10,10 @@
             (else
              (iter (tail xs) a))))
     (iter xs x)))
+;(define (same-parity . xs)
+;  (let ((mark (remainder (head xs) 2)))
+;    (filter (lambda (x) (= mark
+;                           (remainder x 2)))
+;            xs)))
 (same-parity 1 2 3 4 5 6 7)
 (same-parity 2 3 4 5 6 7)
