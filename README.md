@@ -1,3 +1,6 @@
-### Exercises from Structure and Interpretation of Computer Programs
+# Programming Language 
 
-I guess Racket is one of the most interesting language I have tried.
+- [ ] Programming Language, Part A
+- [ ] Programming Language, Part B
+- [ ] Programming Language, Part C
+- [ ] Exercises from **Structure and Interpretation of Computer Programs**
