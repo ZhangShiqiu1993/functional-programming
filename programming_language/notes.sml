@@ -70,3 +70,6 @@ fun seconds(xs : (int * int) list) =
 	if null xs
 	then []
 	else (#2 (hd xs)) :: seconds(tl xs)
+
+fun sum_pair_list2 (xs : (int * int) list) =
+	sum_list(firsts xs) + sum_list(seconds xs)
