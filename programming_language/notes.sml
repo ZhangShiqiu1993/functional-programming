@@ -81,3 +81,13 @@ fun silly1 (z : int) =
 	in
 		if x > y then x * 2 else y * y
 	end
+
+fun countup_from1 (x : int) =
+	let
+		fun count (from : int, to : int) =
+			if from = to
+			then to :: []
+			else from :: count(from + 1, to)
+	in
+		count (1, x)
+	end
