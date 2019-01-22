@@ -77,3 +77,11 @@ fun number_before_reaching_sum (sum : int, xs : int list) =
 	in
 		reach_sum(sum, xs, 0, 0)
 	end
+
+(*9*)
+fun what_month(day : int) =
+	let
+		val days_list = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31]
+	in
+		number_before_reaching_sum(day, days_list) + 1
+	end
