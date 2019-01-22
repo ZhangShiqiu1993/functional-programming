@@ -23,4 +23,9 @@ fun number_in_month (dates_list : (int * int * int) list, month: int) =
 		then 0
 		else in_month(hd dates_list) + number_in_month(tl dates_list, month)
 	end
-	
+
+(*3*)
+fun number_in_months (dates_list: (int * int * int) list, months: int list) =
+	if null months
+	then 0
+	else number_in_month(dates_list, hd months) + number_in_months(dates_list, tl months)
