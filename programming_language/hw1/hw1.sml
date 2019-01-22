@@ -85,3 +85,9 @@ fun what_month(day : int) =
 	in
 		number_before_reaching_sum(day, days_list) + 1
 	end
+
+(*10*)
+fun month_range(day1 : int, day2 : int) =
+	if day2 < day1
+	then []
+	else what_month day1 :: month_range(day1 + 1, day2)
