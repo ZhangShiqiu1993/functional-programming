@@ -132,4 +132,11 @@ fun remove_duplicate(xs : int list) =
 				else (hd xs) :: tl_ans
 			end
 	end
+
+fun number_in_months_challenge (dates_list: (int * int * int) list, months: int list) =
+	number_in_months(dates_list, remove_duplicate(months))
+
+fun dates_in_months_challenge (dates_list: (int * int * int) list, months: int list) =
+	dates_in_months(dates_list, remove_duplicate(months))
+
 		
