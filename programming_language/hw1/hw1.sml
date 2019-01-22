@@ -29,3 +29,16 @@ fun number_in_months (dates_list: (int * int * int) list, months: int list) =
 	if null months
 	then 0
 	else number_in_month(dates_list, hd months) + number_in_months(dates_list, tl months)
+
+(*4*)
+fun dates_in_month (dates_list: (int * int * int) list, month: int) = 
+	if null dates_list
+	then [] 
+	else 
+		let
+			val tl_ans = dates_in_month (tl dates_list, month)
+		in
+			if #2 (hd dates_list) = month
+			then hd dates_list :: tl_ans
+			else tl_ans
+		end
