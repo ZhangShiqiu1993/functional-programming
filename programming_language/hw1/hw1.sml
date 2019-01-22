@@ -42,3 +42,9 @@ fun dates_in_month (dates_list: (int * int * int) list, month: int) =
 			then hd dates_list :: tl_ans
 			else tl_ans
 		end
+
+(*5*)
+fun dates_in_months (dates_list: (int * int * int) list, months: int list) = 
+	if null months
+	then []
+	else dates_in_month(dates_list, hd months) @ dates_in_months(dates_list, tl months)
