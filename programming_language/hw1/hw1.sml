@@ -110,3 +110,26 @@ fun oldest (dates : (int * int * int) list) =
 		in
 			SOME (oldest_nonempty dates)
 		end
+
+(*12*)
+fun remove_duplicate(xs : int list) =
+	let
+		fun in_list (x : int, xs : int list) =
+			if null xs
+			then false
+			else if (hd xs) = x
+			then true
+			else in_list(x, tl xs)
+	in
+		if null xs 
+		then []
+		else
+			let
+				val tl_ans = remove_duplicate(tl xs)
+			in
+				if in_list(hd xs, tl_ans)
+				then tl_ans
+				else (hd xs) :: tl_ans
+			end
+	end
+		
