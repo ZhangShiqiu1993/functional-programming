@@ -144,3 +144,7 @@ fun max2 (xs : int list) =
 		SOME (max_nonempty xs)
 	end
 
+(*true andalso false;*)
+(*true orelse false;*)
+(*not true;*)
+(* =  <>  *)
