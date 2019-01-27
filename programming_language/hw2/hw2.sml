@@ -22,3 +22,17 @@ fun get_substitutions1(substitutions, s) =
 		  		  NONE => tl_ans
 		  	    | SOME (lst) => lst @ tl_ans
 	 		end
+
+(*1 c*)
+fun get_substitutions2(substitutions, s) =
+	let
+		fun aux(substitutions, ans) =
+			case substitutions of
+				  [] => ans
+				| sub::subs => case all_except_option(s, sub) of
+								 NONE => aux(subs, ans)
+							   | SOME (lst) => aux(subs, ans @ lst)
+	in
+		aux(substitutions, [])
+	end
+
