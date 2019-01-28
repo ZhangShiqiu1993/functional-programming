@@ -34,3 +34,15 @@ fun get_substitutions2(substitutions, s) =
 	in
 		aux(substitutions, [])
 	end
+
+
+(*1 d*)
+fun similar_names(substitutions, {first=f, middle=m, last=l}) =
+	let
+		fun similar_name(substitutions) =
+			case substitutions of
+				[] => []
+			  | sub :: subs => {first=sub, middle=m, last=l} :: similar_name(subs)
+	in
+		{first=f, middle=m, last=l} :: similar_name(get_substitutions2(substitutions, f))
+	end
