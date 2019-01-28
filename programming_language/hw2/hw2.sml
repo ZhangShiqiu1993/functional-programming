@@ -1,3 +1,4 @@
+(*question 1*)
 fun same_string(s1 : string, s2 : string) =
     s1 = s2
 
@@ -16,12 +17,10 @@ fun all_except_option(str, strs) =
 fun get_substitutions1(substitutions, s) =
 	case substitutions of
 		[] => []
-	  | sub::subs =>
-	 		let val tl_ans = get_substitutions1(subs, s)
-	 		in case all_except_option(s, sub) of
-		  		  NONE => tl_ans
-		  	    | SOME (lst) => lst @ tl_ans
-	 		end
+	  | sub::subs => case all_except_option(s, sub) of
+			  		   NONE => get_substitutions1(subs, s)
+			  	     | SOME (lst) => lst @ get_substitutions1(subs, s)
+	 		
 
 (*1 c*)
 fun get_substitutions2(substitutions, s) =
@@ -35,4 +34,3 @@ fun get_substitutions2(substitutions, s) =
 	in
 		aux(substitutions, [])
 	end
-
