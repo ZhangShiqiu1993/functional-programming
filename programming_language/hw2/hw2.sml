@@ -46,3 +46,20 @@ fun similar_names(substitutions, {first=f, middle=m, last=l}) =
 	in
 		{first=f, middle=m, last=l} :: similar_name(get_substitutions2(substitutions, f))
 	end
+
+(*question 2*)
+datatype suit = Clubs | Diamonds | Hearts | Spades
+datatype rank = Jack | Queen | King | Ace | Num of int 
+type card = suit * rank
+
+datatype color = Red | Black
+datatype move = Discard of card | Draw 
+
+exception IllegalMove
+
+(*2 a*)
+fun card_color c =
+	case c of
+		(Clubs, _) => Black
+	  | (Spades, _) => Black
+	  | _ => Red
