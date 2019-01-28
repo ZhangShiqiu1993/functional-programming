@@ -93,3 +93,12 @@ fun sum_cards card_list =
 	in
 		sum(card_list, 0)
 	end
+
+(*2 f*)
+fun score (held_cards, goal) =
+	let
+		val sum = sum_cards(held_cards)
+		val preliminary_score = if sum > goal then 3 * (sum - goal) else goal - sum
+	in
+		if all_same_color(held_cards) then preliminary_score div 2 else preliminary_score
+	end
