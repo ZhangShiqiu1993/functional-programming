@@ -102,3 +102,24 @@ fun score (held_cards, goal) =
 	in
 		if all_same_color(held_cards) then preliminary_score div 2 else preliminary_score
 	end
+
+(*2 g*)
+fun officiate (card_list, does, goal)=
+	let
+		fun run(held_cards, does, card_list) =
+			case does of
+				[] => score (held_cards, goal)
+			  | Discard c::rest_does => run(remove_card(held_cards, c, IllegalMove), rest_does, card_list)
+			  | Draw::rest_does =>
+		      		case card_list of
+		      			[] => score (held_cards, goal)
+		      		  | head_card::rest_cards =>
+		      		  		let val held_more_card = head_card::held_cards
+		      		  		in
+		      		  			if sum_cards(held_more_card) > goal 
+		      		  			then score (held_more_card, goal) 
+		      		  			else run(held_more_card, rest_does, rest_cards)
+		      		  		end
+	in
+		run([], does, card_list)
+	end
