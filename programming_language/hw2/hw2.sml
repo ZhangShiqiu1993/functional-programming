@@ -123,3 +123,31 @@ fun officiate (card_list, does, goal)=
 	in
 		run([], does, card_list)
 	end
+
+(*question 3*)
+
+(*3 a*)
+fun score_challenge (held_cards, goal) =
+	let
+		val sum = sum_cards(held_cards)
+		fun count_ace (cards, count) =
+			case cards of
+				[] => count
+			  | (_, Ace)::rest => count_ace(rest, count + 1)
+			  | _::rest => count_ace(rest, count)
+
+		val same_color = all_same_color(held_cards)
+
+		fun calc_score (sum)= 
+			let val preliminary_score = if sum > goal then 3 * (sum - goal) else goal - sum
+			in
+				if same_color then preliminary_score div 2 else preliminary_score
+			end
+
+		fun loop(current_score, n_times, ans) =
+			if n_times = 0
+			then ans
+			else loop(current_score - 10, n_times - 1, Int.min(ans, calc_score(current_score)))
+	in
+		loop(sum, count_ace(held_cards, 0), calc_score(sum))
+	end
