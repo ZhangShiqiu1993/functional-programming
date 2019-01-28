@@ -76,3 +76,10 @@ fun remove_card (card_list, c, e) =
 	case card_list of
 		[] => raise e
 	  | head::rest => if head = c then rest else head::remove_card(rest, c, e)
+
+(*2 d*)
+fun all_same_color card_list = 
+	case card_list of
+		[] => true
+	  | [_] => true
+	  | head::neck::rest => card_color(head) = card_color(neck) andalso all_same_color(neck::rest)
