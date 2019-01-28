@@ -151,3 +151,26 @@ fun score_challenge (held_cards, goal) =
 	in
 		loop(sum, count_ace(held_cards, 0), calc_score(sum))
 	end
+
+fun officiate_challenge (card_list, does, goal)=
+	let
+		fun run(held_cards, does, card_list) =
+			case does of
+				[] => score_challenge (held_cards, goal)
+			  | Discard c::rest_does => run(remove_card(held_cards, c, IllegalMove), rest_does, card_list)
+			  | Draw::rest_does =>
+		      		case card_list of
+		      			[] => score_challenge (held_cards, goal)
+		      		  | head_card::rest_cards =>
+		      		  		let val held_more_card = head_card::held_cards
+		      		  		in
+		      		  			if sum_cards(held_more_card) > goal 
+		      		  			then score_challenge (held_more_card, goal) 
+		      		  			else run(held_more_card, rest_does, rest_cards)
+		      		  		end
+	in
+		run([], does, card_list)
+	end
+ 
+ (*3 b*)
+ (*fun careful_player(card_list, goal)*)
