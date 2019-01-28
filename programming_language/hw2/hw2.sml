@@ -70,3 +70,9 @@ fun card_value c =
 		(_, Num i) => i
 	  | (_, Ace) => 11
 	  | _ => 10
+
+(*2 c*)
+fun remove_card (card_list, c, e) =
+	case card_list of
+		[] => raise e
+	  | head::rest => if head = c then rest else head::remove_card(rest, c, e)
