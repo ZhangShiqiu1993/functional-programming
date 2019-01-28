@@ -63,3 +63,10 @@ fun card_color c =
 		(Clubs, _) => Black
 	  | (Spades, _) => Black
 	  | _ => Red
+
+(*2 b*)
+fun card_value c =
+	case c of
+		(_, Num i) => i
+	  | (_, Ace) => 11
+	  | _ => 10
