@@ -45,3 +45,9 @@ fun longest_string1 strs = foldl (fn (x, y) => if String.size x > String.size y 
 (*3*)
 fun longest_string2 strs = foldl (fn (x, y) => if String.size x >= String.size y then x else y) "" strs
 
+(*4*)
+fun longest_string_helper f =
+	foldl (fn (x, y) => if f (String.size x, String.size y) then x else y) ""
+
+val longest_string3 = longest_string_helper (fn (x, y) => x > y)
+val longest_string4 = longest_string_helper (fn (x, y) => x >= y)
