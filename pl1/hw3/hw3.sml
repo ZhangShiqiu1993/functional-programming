@@ -57,3 +57,11 @@ val longest_capitalized = longest_string1 o only_capitals
 
 (*6*)
 val rev_string = String.implode o rev o String.explode
+
+(*7*)
+fun first_answer f xs =
+	case xs of
+		[] => raise NoAnswer
+	  | x::rest => case f x of
+					  NONE => first_answer f rest
+	  				| SOME y => y
