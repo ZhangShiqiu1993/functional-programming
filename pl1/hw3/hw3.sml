@@ -65,3 +65,15 @@ fun first_answer f xs =
 	  | x::rest => case f x of
 					  NONE => first_answer f rest
 	  				| SOME y => y
+
+(*8*)
+fun all_answers f xs =
+	let fun acc (xs, ans) =
+		case xs of
+			[] => SOME ans
+		  | x::rest => case f x of
+		  				   NONE => NONE
+		  				 | SOME y => acc (rest, y @ ans)
+	in
+		acc(xs, [])
+	end
