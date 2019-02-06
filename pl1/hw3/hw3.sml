@@ -68,3 +68,4 @@ fun g f1 f2 p =
     end
 
 val count_wildcards = g (fn _ => 1) (fn _ => 0)
+val count_wild_and_variable_lengths = g (fn _ => 1) String.size
