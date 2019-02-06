@@ -110,3 +110,8 @@ fun match (v, p) =
 	  | (Tuple vs, TupleP ps) => if length vs = length ps then all_answers match (ListPair.zip(vs, ps)) else NONE
 	  | (Constructor (s2, v), ConstructorP (s1, p)) => if s1 = s2 then match(v, p) else NONE
 	  | _                   => NONE
+
+(*12*)
+fun first_match v ps =
+	SOME (first_answer (fn p => match(v, p)) ps)
+	handle NoAnswer => NONE
