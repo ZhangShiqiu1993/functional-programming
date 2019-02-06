@@ -70,3 +70,21 @@ fun g f1 f2 p =
 val count_wildcards = g (fn _ => 1) (fn _ => 0)
 val count_wild_and_variable_lengths = g (fn _ => 1) String.size
 fun count_some_var (x, p) = g (fn _ => 0) (fn s => if s = x then 1 else 0) p
+
+(*10*)
+val check_pat =
+	let
+		fun get_variables p =
+			case p of
+				Variable s => [s]
+			  | TupleP ps => foldl (fn (p, ans) => get_variables(p) @ ans) [] ps
+			  | ConstructorP (_, p) => get_variables p
+			  | _ => []
+		fun distinct ps =
+			case ps of
+				[] => true
+			  | head::rest => distinct(rest) andalso (not (List.exists (fn x => head = x) rest))
+	in
+		distinct o get_variables
+	end
+
