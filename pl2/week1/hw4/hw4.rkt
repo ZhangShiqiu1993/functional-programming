@@ -5,3 +5,8 @@
 
 ;; put your code below
 
+;; 1
+(define (sequence low high stride)
+    (if (> low high)
+        null
+        (cons low (sequence (+ low stride) high stride))))
