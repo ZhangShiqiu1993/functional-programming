@@ -20,3 +20,8 @@
   (cond [(< n 0) (error "list-nth-mod: negative number")]
         [(null? xs) (error "list-nth-mod: empty list")]
         [#t (car (list-tail xs (remainder n (length xs))))]))
+
+;; 4
+(define (stream-for-n-steps s n)
+  (cond [(= n 0) null]
+        [#t (cons (car (s)) (stream-for-n-steps (cdr (s)) (- n 1)))]))
