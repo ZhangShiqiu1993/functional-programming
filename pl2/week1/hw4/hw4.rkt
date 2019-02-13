@@ -32,3 +32,11 @@
                 (cons (if (= 0 (remainder x 5)) (- x) x)
                       (lambda () (f (+ x 1)))))])
     (lambda () (f 1))))
+
+;; 6
+(define dan-then-dog
+  (letrec ([f (lambda (x)
+                (cons (if (even? x) "dan.jpg" "dog.jpg")
+                      (lambda () (f (+ x 1)))))])
+    (lambda() (f 0))))
+ 
