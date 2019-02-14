@@ -52,3 +52,14 @@
                 (cons (cons (list-nth-mod xs n) (list-nth-mod ys n))
                       (lambda () (f (+ n 1)))))])
     (lambda () (f 0))))
+
+;; 9
+(define (vector-assoc v vec)
+  (letrec ([f (lambda (i)
+                (if (= i (vector-length vec))
+                    #f
+                    (let ([x (vector-ref vec i)])
+                        (if (and (cons? x) (= (equal? x) v))
+                            x
+                            (f (+ i 1))))))])
+    (f 0)))
