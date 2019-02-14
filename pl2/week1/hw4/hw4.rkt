@@ -63,3 +63,18 @@
                             x
                             (f (+ i 1))))))])
     (f 0)))
+
+;; 10
+(define (cached-assoc lst n)
+  (let ([cache (make-vector n #f)]
+        [next-to-replace 0])
+    (lambda (v)
+      (or (vector-assoc v cache)
+          (let ([ans (assoc v lst)])
+            (and ans
+                 (begin (vector-set! cache next-to-replace ans)
+                        (set! next-to-replace 
+                              (if (= (+ next-to-replace 1) n)
+                                  0
+                                  (+ next-to-replace 1)))
+                        ans)))))))
