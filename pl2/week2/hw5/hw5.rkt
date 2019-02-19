@@ -118,6 +118,9 @@
         [#t (mlet (car (car bs)) (cdr (car bs))
                   (mlet* (cdr bs) e2))]))
 
+(define (ifeq e1 e2 e3 e4) 
+  (mlet "_x" e1 (mlet "_y" e2 (ifgreater (var "_x") (var "_y") e4 (ifgreater (var "_y") (var "_x") e4 e3)))))
+
 ;; Problem 4
 
 ;; Challenge Problem
