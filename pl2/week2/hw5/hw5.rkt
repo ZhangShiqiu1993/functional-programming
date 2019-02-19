@@ -132,6 +132,12 @@
                             (call (call (var "map") (var "f"))
                                   (snd (var "xs"))))))))
 
+(define mupl-mapAddN
+  (mlet "map" mupl-map 
+        (fun #f "x"
+             (call (var "map") (fun #f "y" 
+                                    (add (var "x") (var "y")))))))
+
 ;; Challenge Problem
 
 (struct fun-challenge (nameopt formal body freevars) #:transparent) ;; a recursive(?) 1-argument function
