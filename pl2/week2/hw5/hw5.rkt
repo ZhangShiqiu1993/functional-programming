@@ -112,6 +112,12 @@
 
 (define (ifaunit e1 e2 e3)
   (ifgreater (isaunit e1) (int 0) e2 e3))
+
+(define (mlet* bs e2) 
+  (cond [(null? bs) e2]
+        [#t (mlet (car (car bs)) (cdr (car bs))
+                  (mlet* (cdr bs) e2))]))
+
 ;; Problem 4
 
 ;; Challenge Problem
