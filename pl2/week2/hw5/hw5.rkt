@@ -123,6 +123,15 @@
 
 ;; Problem 4
 
+(define mupl-map
+  (fun "map" "f"
+       (fun #f "xs"
+            (ifaunit (var "xs")
+                     (aunit)
+                     (apair (call (var "f") (fst (var "xs")))
+                            (call (call (var "map") (var "f"))
+                                  (snd (var "xs"))))))))
+
 ;; Challenge Problem
 
 (struct fun-challenge (nameopt formal body freevars) #:transparent) ;; a recursive(?) 1-argument function
