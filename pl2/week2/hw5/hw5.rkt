@@ -22,7 +22,10 @@
 
 ;; Problem 1
 
-;; CHANGE (put your solutions here)
+(define (racketlist->mupllist xs)
+  (if (null? xs)
+      (aunit)
+      (apair (car xs) (racketlist->mupllist (cdr xs)))))
 
 ;; Problem 2
 
@@ -37,39 +40,13 @@
 ;; DO add more cases for other kinds of MUPL expressions.
 ;; We will test eval-under-env by calling it directly even though
 ;; "in real life" it would be a helper function of eval-exp.
-(define (eval-under-env e env)
-  (cond [(var? e) 
-         (envlookup env (var-string e))]
-        [(add? e) 
-         (let ([v1 (eval-under-env (add-e1 e) env)]
-               [v2 (eval-under-env (add-e2 e) env)])
-           (if (and (int? v1)
-                    (int? v2))
-               (int (+ (int-num v1) 
-                       (int-num v2)))
-               (error "MUPL addition applied to non-number")))]
-        ;; CHANGE add more cases here
-        [#t (error (format "bad MUPL expression: ~v" e))]))
 
-;; Do NOT change
 (define (eval-exp e)
   (eval-under-env e null))
         
 ;; Problem 3
 
-(define (ifaunit e1 e2 e3) "CHANGE")
-
-(define (mlet* lstlst e2) "CHANGE")
-
-(define (ifeq e1 e2 e3 e4) "CHANGE")
-
 ;; Problem 4
-
-(define mupl-map "CHANGE")
-
-(define mupl-mapAddN 
-  (mlet "map" mupl-map
-        "CHANGE (notice map is now in MUPL scope)"))
 
 ;; Challenge Problem
 
