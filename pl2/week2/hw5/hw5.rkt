@@ -110,6 +110,8 @@
         
 ;; Problem 3
 
+(define (ifaunit e1 e2 e3)
+  (ifgreater (isaunit e1) (int 0) e2 e3))
 ;; Problem 4
 
 ;; Challenge Problem
