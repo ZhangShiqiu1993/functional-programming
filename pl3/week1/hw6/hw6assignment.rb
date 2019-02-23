@@ -36,6 +36,13 @@ class MyBoard < Board
     @delay = 500
   end
 
+  def rotate_180
+    if !game_over? and @game.is_running?
+      @current_block.move(0, 0, 2) # or 2 can be -2
+    end
+    draw
+  end
+
 end
 
 class MyTetris < Tetris
