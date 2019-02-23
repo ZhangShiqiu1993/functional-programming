@@ -63,6 +63,12 @@ end
 
 class MyTetris < Tetris
   # your enhancements here
+  def key_bindings
+    super
+    @root.bind('u', proc { @board.rotate_clockwise; @board.rotate_clockwise })
+    @root.bind('c', proc { @board.maybe_cheat })
+  end
+
 
 end
 
