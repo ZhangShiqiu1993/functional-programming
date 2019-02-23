@@ -12,6 +12,10 @@ class MyPiece < Piece
       rotations([[0, 0], [1, 0], [0, 1]]) # short-L
   ]
   # your enhancements here
+  def self.next_piece (board)
+    MyPiece.new(All_My_Pieces.sample, board) # notice change
+  end
+
 
 end
 
