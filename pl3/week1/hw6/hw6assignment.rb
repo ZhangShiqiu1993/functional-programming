@@ -16,7 +16,13 @@ class MyPiece < Piece
     MyPiece.new(All_My_Pieces.sample, board) # notice change
   end
 
+  def num_blocks
+    @all_rotations[0].size
+  end
 
+  def self.next_cheat_piece (board)
+    MyPiece.new([[[0, 0]]], board)
+  end
 end
 
 class MyBoard < Board
