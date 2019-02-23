@@ -43,6 +43,14 @@ class MyBoard < Board
     draw
   end
 
+  def maybe_cheat
+    if @score >= 100 and !@cheat
+      @score -= 100
+      @cheat = true
+    end
+  end
+
+
 end
 
 class MyTetris < Tetris
