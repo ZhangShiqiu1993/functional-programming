@@ -50,7 +50,15 @@ class MyBoard < Board
     end
   end
 
-
+  def next_piece
+    if (@cheat)
+      @current_block = MyPiece.next_cheat_piece(self)
+      @cheat = false
+    else
+      @current_block = MyPiece.next_piece(self)
+    end
+    @current_pos = nil
+  end
 end
 
 class MyTetris < Tetris
