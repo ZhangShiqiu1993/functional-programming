@@ -27,6 +27,14 @@ end
 
 class MyBoard < Board
   # your enhancements here
+  def initialize (game)
+    @cheat = false # related to cheat piece, discussed more later
+    @grid = Array.new(num_rows) {Array.new(num_columns)}
+    @current_block = MyPiece.next_piece(self) # notice change
+    @score = 0
+    @game = game
+    @delay = 500
+  end
 
 end
 
