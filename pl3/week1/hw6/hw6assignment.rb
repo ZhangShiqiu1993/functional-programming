@@ -69,7 +69,13 @@ class MyTetris < Tetris
     @root.bind('c', proc { @board.maybe_cheat })
   end
 
-
+  def set_board
+    @canvas = TetrisCanvas.new
+    @board = MyBoard.new(self) # notice change
+    @canvas.place(@board.block_size * @board.num_rows + 3,
+                  @board.block_size * @board.num_columns + 6, 24, 80)
+    @board.draw
+  end
 end
 
 
