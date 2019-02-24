@@ -147,6 +147,14 @@ class Point < GeometryValue
     if real_close(@x, vline.x) then self else NoPoints.new end
   end
 
+  def intersectWithSegmentAsLineResult seg
+    if inbetween(@x,seg.x1,seg.x2) && inbetween(@y,seg.y1,seg.y2)
+      self
+    else
+      NoPoints.new
+    end
+  end
+
 end
 
 class Line < GeometryValue
