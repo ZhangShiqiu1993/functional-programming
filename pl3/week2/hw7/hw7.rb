@@ -68,6 +68,10 @@ class GeometryValue
     line_result = intersect(two_points_to_line(seg.x1,seg.y1,seg.x2,seg.y2))
     line_result.intersectWithSegmentAsLineResult seg
   end
+
+  def eval_prog env
+    self
+  end
 end
 
 class NoPoints < GeometryValue
