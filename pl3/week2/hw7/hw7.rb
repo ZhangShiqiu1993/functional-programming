@@ -135,6 +135,10 @@ class Point < GeometryValue
     other.intersectPoint self
   end
 
+  def intersectPoint p
+    if real_close_point(@x,@y,p.x,p.y) then self else NoPoints.new end
+  end
+
 end
 
 class Line < GeometryValue
