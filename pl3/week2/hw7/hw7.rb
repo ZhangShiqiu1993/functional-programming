@@ -155,6 +155,12 @@ class Point < GeometryValue
     end
   end
 
+  private
+  def inbetween(v,end1,end2)
+    eps = GeometryExpression::Epsilon
+    ((end1 - eps <= v && v <= end2 + eps) ||
+        (end2 - eps <= v && v <= end1 + eps))
+  end
 end
 
 class Line < GeometryValue
