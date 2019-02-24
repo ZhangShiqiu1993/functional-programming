@@ -202,6 +202,10 @@ class Line < GeometryValue
     end
   end
 
+  def intersectVerticalLine vline
+    Point.new(vline.x, m * vline.x + b)
+  end
+
 end
 
 class VerticalLine < GeometryValue
