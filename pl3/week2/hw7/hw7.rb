@@ -171,6 +171,11 @@ class Line < GeometryValue
     @m = m
     @b = b
   end
+
+  def preprocess_prog
+    self
+  end
+
 end
 
 class VerticalLine < GeometryValue
