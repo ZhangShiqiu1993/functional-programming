@@ -188,6 +188,20 @@ class Line < GeometryValue
     p.intersectLine self
   end
 
+  def intersectLine line
+    if real_close(m,line.m)
+      (if real_close(b,line.b)
+         self # same line
+       else
+         NoPoints.new # parallel lines do not intersect
+       end)
+    else # one-point intersection
+      x = (line.b - b).to_f / (m - line.m)
+      y = m * x + b
+      Point.new(x,y)
+    end
+  end
+
 end
 
 class VerticalLine < GeometryValue
