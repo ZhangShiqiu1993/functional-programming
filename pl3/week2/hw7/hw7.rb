@@ -131,6 +131,10 @@ class Point < GeometryValue
     Point.new(@x + dx, @y + dy)
   end
 
+  def intersect other
+    other.intersectPoint self
+  end
+
 end
 
 class Line < GeometryValue
