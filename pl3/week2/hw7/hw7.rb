@@ -176,6 +176,10 @@ class Line < GeometryValue
     self
   end
 
+  def shift(dx,dy)
+    Line.new(@m, @m*(-dx) + @b + dy)
+  end
+
 end
 
 class VerticalLine < GeometryValue
