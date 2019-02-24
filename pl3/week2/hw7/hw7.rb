@@ -206,6 +206,9 @@ class Line < GeometryValue
     Point.new(vline.x, m * vline.x + b)
   end
 
+  def intersectWithSegmentAsLineResult seg
+    seg # so segment seg in on line represented by self
+  end
 end
 
 class VerticalLine < GeometryValue
