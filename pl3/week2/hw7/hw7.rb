@@ -180,6 +180,10 @@ class Line < GeometryValue
     Line.new(@m, @m*(-dx) + @b + dy)
   end
 
+  def intersect other
+    other.intersectLine self
+  end
+
 end
 
 class VerticalLine < GeometryValue
