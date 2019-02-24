@@ -127,6 +127,10 @@ class Point < GeometryValue
     self
   end
 
+  def shift(dx,dy)
+    Point.new(@x + dx, @y + dy)
+  end
+
 end
 
 class Line < GeometryValue
