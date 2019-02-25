@@ -265,6 +265,23 @@ class LineSegment < GeometryValue
     @x2 = x2
     @y2 = y2
   end
+
+  def preprocess_prog
+    if real_close_point(@x1,@y1,@x2,@y2)
+      Point.new(@x1,@y1)
+    elsif real_close(@x1,@x2)
+      if @y1 > @y2
+        LineSegment.new(@x2,@y2,@x1,@y1)
+      else
+        self
+      end
+    elsif @x1 > @x2
+      LineSegment.new(@x2,@y2,@x1,@y1)
+    else
+      self
+    end
+  end
+
 end
 
 # Note: there is no need for getter methods for the non-value classes
