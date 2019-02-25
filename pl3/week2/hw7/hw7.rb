@@ -294,6 +294,10 @@ class LineSegment < GeometryValue
     p.intersectLineSegment self
   end
 
+  def intersectLine line
+    line.intersectLineSegment self
+  end
+
 end
 
 # Note: there is no need for getter methods for the non-value classes
