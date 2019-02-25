@@ -286,6 +286,10 @@ class LineSegment < GeometryValue
     LineSegment.new(@x1+dx,@y1+dy,@x2+dx,@y2+dy)
   end
 
+  def intersect other
+    other.intersectLineSegment self
+  end
+
 end
 
 # Note: there is no need for getter methods for the non-value classes
