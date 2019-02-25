@@ -218,6 +218,11 @@ class VerticalLine < GeometryValue
   def initialize x
     @x = x
   end
+
+  def preprocess_prog
+    self
+  end
+
 end
 
 class LineSegment < GeometryValue
