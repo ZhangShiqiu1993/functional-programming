@@ -303,7 +303,12 @@ class LineSegment < GeometryValue
   end
 
   def intersectWithSegmentAsLineResult seg
+    # the "hard case in the hard case" where self and seg are segments
+    # on the same line (which could be vertical or not) and the segments
+    # could be disjoint, overlapping, one inside the other or just touching
     if real_close(@x1,@x2)
+      # the segments are on a vertical line
+      # let segment a start at or below start of segment b
       aXstart,aYstart,aXend,aYend,bXstart,bYstart,bXend,bYend =
           if @y1 < seg.y1
             [@x1,@y1,@x2,@y2,seg.x1,seg.y1,seg.x2,seg.y2]
@@ -311,15 +316,17 @@ class LineSegment < GeometryValue
             [seg.x1,seg.y1,seg.x2,seg.y2,@x1,@y1,@x2,@y2]
           end
       if real_close(aYend,bYstart)
-        Point.new(aXend,aYend)
+        Point.new(aXend,aYend) # just touching
       elsif aYend < bYstart
-        NoPoints.new
+        NoPoints.new # disjoint
       elsif aYend > bYend
-        LineSegment.new(bXstart,bYstart,bXend,bYend)
+        LineSegment.new(bXstart,bYstart,bXend,bYend) # b inside a
       else
-        LineSegment.new(bXstart,bYstart,aXend,aYend)
+        LineSegment.new(bXstart,bYstart,aXend,aYend) # overlapping
       end
     else
+      # the segments are on a non-vertical line
+      # let segment a start at or to the left of start of segment b
       aXstart,aYstart,aXend,aYend,bXstart,bYstart,bXend,bYend =
           if @x1 < seg.x1
             [@x1,@y1,@x2,@y2,seg.x1,seg.y1,seg.x2,seg.y2]
@@ -327,13 +334,13 @@ class LineSegment < GeometryValue
             [seg.x1,seg.y1,seg.x2,seg.y2,@x1,@y1,@x2,@y2]
           end
       if real_close(aXend,bXstart)
-        Point.new(aXend,aYend)
+        Point.new(aXend,aYend) # just touching
       elsif aXend < bXstart
-        NoPoints.new
+        NoPoints.new # disjoint
       elsif aXend > bXend
-        LineSegment.new(bXstart,bYstart,bXend,bYend)
+        LineSegment.new(bXstart,bYstart,bXend,bYend) # b inside a
       else
-        LineSegment.new(bXstart,bYstart,aXend,aYend)
+        LineSegment.new(bXstart,bYstart,aXend,aYend) # overlapping
       end
     end
   end
