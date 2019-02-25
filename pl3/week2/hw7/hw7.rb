@@ -223,6 +223,10 @@ class VerticalLine < GeometryValue
     self
   end
 
+  def shift(dx,dy)
+    VerticalLine.new(@x+dx)
+  end
+
 end
 
 class LineSegment < GeometryValue
