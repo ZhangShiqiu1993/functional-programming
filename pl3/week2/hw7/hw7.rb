@@ -282,6 +282,10 @@ class LineSegment < GeometryValue
     end
   end
 
+  def shift(dx,dy)
+    LineSegment.new(@x1+dx,@y1+dy,@x2+dx,@y2+dy)
+  end
+
 end
 
 # Note: there is no need for getter methods for the non-value classes
