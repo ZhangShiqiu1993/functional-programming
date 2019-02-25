@@ -235,6 +235,10 @@ class VerticalLine < GeometryValue
     p.intersectVerticalLine self
   end
 
+  def intersectLine line
+    line.intersectVerticalLine self
+  end
+
 end
 
 class LineSegment < GeometryValue
