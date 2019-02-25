@@ -302,6 +302,41 @@ class LineSegment < GeometryValue
     vline.intersectLineSegment self
   end
 
+  def intersectWithSegmentAsLineResult seg
+    if real_close(@x1,@x2)
+      aXstart,aYstart,aXend,aYend,bXstart,bYstart,bXend,bYend =
+          if @y1 < seg.y1
+            [@x1,@y1,@x2,@y2,seg.x1,seg.y1,seg.x2,seg.y2]
+          else
+            [seg.x1,seg.y1,seg.x2,seg.y2,@x1,@y1,@x2,@y2]
+          end
+      if real_close(aYend,bYstart)
+        Point.new(aXend,aYend)
+      elsif aYend < bYstart
+        NoPoints.new
+      elsif aYend > bYend
+        LineSegment.new(bXstart,bYstart,bXend,bYend)
+      else
+        LineSegment.new(bXstart,bYstart,aXend,aYend)
+      end
+    else
+      aXstart,aYstart,aXend,aYend,bXstart,bYstart,bXend,bYend =
+          if @x1 < seg.x1
+            [@x1,@y1,@x2,@y2,seg.x1,seg.y1,seg.x2,seg.y2]
+          else
+            [seg.x1,seg.y1,seg.x2,seg.y2,@x1,@y1,@x2,@y2]
+          end
+      if real_close(aXend,bXstart)
+        Point.new(aXend,aYend)
+      elsif aXend < bXstart
+        NoPoints.new
+      elsif aXend > bXend
+        LineSegment.new(bXstart,bYstart,bXend,bYend)
+      else
+        LineSegment.new(bXstart,bYstart,aXend,aYend)
+      end
+    end
+  end
 end
 
 # Note: there is no need for getter methods for the non-value classes
