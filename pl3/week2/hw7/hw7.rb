@@ -239,6 +239,14 @@ class VerticalLine < GeometryValue
     line.intersectVerticalLine self
   end
 
+  def intersectVerticalLine vline
+    if real_close(x,vline.x)
+      self # same line
+    else
+      NoPoints.new # parallel
+    end
+  end
+
 end
 
 class LineSegment < GeometryValue
