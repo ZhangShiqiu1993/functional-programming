@@ -247,6 +247,9 @@ class VerticalLine < GeometryValue
     end
   end
 
+  def intersectWithSegmentAsLineResult seg
+    seg # so segment seg in on vertical line represented by self
+  end
 end
 
 class LineSegment < GeometryValue
