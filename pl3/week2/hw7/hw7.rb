@@ -396,6 +396,10 @@ class Var < GeometryExpression
     raise "undefined variable" if pr.nil?
     pr[1]
   end
+
+  def preprocess_prog
+    self
+  end
 end
 
 class Shift < GeometryExpression
