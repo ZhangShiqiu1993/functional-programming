@@ -375,6 +375,10 @@ class Let < GeometryExpression
     @e1 = e1
     @e2 = e2
   end
+
+  def eval_prog env
+    @e2.eval_prog([[@s,@e1.eval_prog(env)]] + env)
+  end
 end
 
 class Var < GeometryExpression
