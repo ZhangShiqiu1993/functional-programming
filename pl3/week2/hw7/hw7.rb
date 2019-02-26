@@ -102,8 +102,8 @@ class NoPoints < GeometryValue
   def intersectVerticalLine vline
     self # intersection with line and no-points is no-points
   end
-  # if self is the intersection of (1) some shape s and (2) 
-  # the line containing seg, then we return the intersection of the 
+  # if self is the intersection of (1) some shape s and (2)
+  # the line containing seg, then we return the intersection of the
   # shape s and the seg.  seg is an instance of LineSegment
   def intersectWithSegmentAsLineResult seg
     self
@@ -358,6 +358,11 @@ class Intersect < GeometryExpression
 
   def eval_prog env
     @e1.eval_prog(env).intersect @e2.eval_prog(env)
+  end
+
+  def preprocess_prog
+    Intersect.new(@e1.preprocess_prog,
+                  @e2.preprocess_prog)
   end
 end
 
